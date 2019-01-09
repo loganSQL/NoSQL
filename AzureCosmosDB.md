@@ -75,25 +75,61 @@ DocumentDB is a NoSQL database which is massively scalable and it works with sch
 
 ## Running on Docker
 * Prerequisites: Docker for Windows (Switch to Windows containers)
-* Pull the emulator image from Docker Hub
+* [Pull the emulator image from Docker Hub](<https://hub.docker.com/r/microsoft/azure-cosmosdb-emulator/>)
 ```
 docker pull microsoft/azure-cosmosdb-emulator
 ```
-* Start the image in powershell
+* Start the image in cmd
 ```
-md $env:LOCALAPPDATA\CosmosDBEmulatorCert 2>null
-docker run -v $env:LOCALAPPDATA\CosmosDBEmulatorCert:C:\CosmosDB.Emulator\CosmosDBEmulatorCert -P -t -i -m 2GB microsoft/azure-cosmosdb-emulator
+set containerName=azure-cosmosdb-emulator
+set hostDirectory=%LOCALAPPDATA%\azure-cosmosdb-emulator.hostd
+md %hostDirectory% 2>nul
+docker run --name %containerName% --memory 2GB --mount "type=bind,source=%hostDirectory%,destination=C:\CosmosDB.Emulator\bind-mount" -P --interactive --tty microsoft/azure-cosmosdb-emulator
 ```
 * Get the **endpoint** and **master key-in** from the response 
 ```
+Transcript started, output file is C:\CosmosDB.Emulator\bind-mount\Diagnostics\Transcript.log
+Key   : Emulator
+Value : CosmosDB.Emulator
+Name  : Emulator
 
+
+Key   : Version
+Value : 2.1.3.0
+Name  : Version
+
+
+Key   : Key
+Value : C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==
+Name  : Key
+
+
+Key   : IPAddress
+Value : 172.23.28.146
+Name  : IPAddress
+
+
+Key   : MongoDBEndpoint
+Value : {mongodb://73cc3aefa437:10255/, mongodb://172.23.28.146:10255/}
+Name  : MongoDBEndpoint
+
+
+Key   : Endpoint
+Value : {https://73cc3aefa437:8081/, https://172.23.28.146:8081/}
+Name  : Endpoint
+
+
+Key   : CassandraEndpoint
+Value : {tcp://73cc3aefa437:10350/, tcp://172.23.28.146:10350/}
+Name  : CassandraEndpoint
 ```
-* To import the SSL certificate, do the following from an admin command prompt
+* To import the SSL certificate, do the following from an admin cmd
 ```
-cd $env:LOCALAPPDATA\CosmosDBEmulatorCert
-.\importcert.ps1
+cd %LOCALAPPDATA%\azure-cosmosdb-emulator.hostd
+dir
+powershell .\importcert.ps1
 ```
 * To open the Data Explorer, navigate to the following URL in your browser.
 ```
-https://<emulator endpoint provided in response>/_explorer/index.html
+https://172.23.28.146:8081/_explorer/index.html
 ```
