@@ -72,3 +72,28 @@ DocumentDB is a NoSQL database which is massively scalable and it works with sch
   * System generated properties (Once you save the data, you can observe some system generated properties, prefixed with underscore)
 
 # [3. Use the Azure Cosmos DB Emulator for local development and testing](<https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator>)
+
+## Running on Docker
+* Prerequisites: Docker for Windows (Switch to Windows containers)
+* Pull the emulator image from Docker Hub
+```
+docker pull microsoft/azure-cosmosdb-emulator
+```
+* Start the image in powershell
+```
+md $env:LOCALAPPDATA\CosmosDBEmulatorCert 2>null
+docker run -v $env:LOCALAPPDATA\CosmosDBEmulatorCert:C:\CosmosDB.Emulator\CosmosDBEmulatorCert -P -t -i -m 2GB microsoft/azure-cosmosdb-emulator
+```
+* Get the **endpoint** and **master key-in** from the response 
+```
+
+```
+* To import the SSL certificate, do the following from an admin command prompt
+```
+cd $env:LOCALAPPDATA\CosmosDBEmulatorCert
+.\importcert.ps1
+```
+* To open the Data Explorer, navigate to the following URL in your browser.
+```
+https://<emulator endpoint provided in response>/_explorer/index.html
+```
