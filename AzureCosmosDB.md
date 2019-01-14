@@ -141,7 +141,11 @@ docker ps -a
 # Start
 docker start azure-cosmosdb-emulator
 
-# To import the SSL certificate after restart, do the following from an admin cmd
+# connect to the container by running cmd
+docker exec -it azure-cosmosdb-emulator cmd
+exit
+
+# To import the SSL certificate for browser after restart, do the following from an admin cmd
 cd %LOCALAPPDATA%\azure-cosmosdb-emulator.hostd
 dir
 powershell .\importcert.ps1
@@ -149,6 +153,9 @@ powershell .\importcert.ps1
 # Get all information (IP)
 docker inspect azure-cosmosdb-emulator
 docker inspect azure-cosmosdb-emulator|findstr 'IPAddress'
+docker port azure-cosmosdb-emulator
+docker top azure-cosmosdb-emulator
+docker logs azure-cosmosdb-emulator
 
 # Browser to 
 https://YOUR_CONTAINER_IP:8081/_explorer/index.html
