@@ -2,6 +2,7 @@
 
 Azure Cosmos DB is a globally distributed, multi-model database service that supports document, key-value, wide-column, and graph databases. 
 
+* [Azure Cosmos DB](<https://azure.microsoft.com/en-us/services/cosmos-db/>)
 * [Azure Cosmos DB Documentation](<https://docs.microsoft.com/en-us/azure/cosmos-db/>)
 * [azure-cosmos-dotnet-v2](https://github.com/Azure/azure-cosmos-dotnet-v2)
 
@@ -73,7 +74,7 @@ DocumentDB is a NoSQL database which is massively scalable and it works with sch
 
 # [3. Use the Azure Cosmos DB Emulator for local development and testing](<https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator>)
 
-## Running on Docker
+## 3.1 Running on Docker
 * Prerequisites: Docker for Windows (Switch to Windows containers)
 * [Pull the emulator image from Docker Hub](<https://hub.docker.com/r/microsoft/azure-cosmosdb-emulator/>)
 ```
@@ -133,7 +134,7 @@ powershell .\importcert.ps1
 ```
 https://172.23.28.146:8081/_explorer/index.html
 ```
-## 4. Maintenance
+## 3.1 Restart
 ```
 # List of container
 docker ps -a
@@ -160,4 +161,11 @@ docker logs azure-cosmosdb-emulator
 # Browser to 
 https://YOUR_CONTAINER_IP:8081/_explorer/index.html
 ```
+# 4 Select an API and data model to create a database
+## [4.1. Document DB / SQL](<https://www.documentdb.com/sql/demo>) 
+Azure Cosmos DB natively supports document data model with familiar SQL API.
+* [Azure Cosmos DB: SQL API getting started tutorial](<https://docs.microsoft.com/en-us/azure/cosmos-db/sql-api-get-started>): ***[DocumentDB00.cs](<https://github.com/loganSQL/NoSQL/blob/master/src/DocumentDB00_Program.cs>)***
+* 
+
+
 
