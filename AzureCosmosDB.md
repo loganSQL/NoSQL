@@ -164,7 +164,18 @@ https://YOUR_CONTAINER_IP:8081/_explorer/index.html
 # 4 Select an API and data model to create a database
 ## [4.1. Document DB / SQL](<https://www.documentdb.com/sql/demo>) 
 Azure Cosmos DB natively supports document data model with familiar SQL API.
-* [Azure Cosmos DB: SQL API getting started tutorial](<https://docs.microsoft.com/en-us/azure/cosmos-db/sql-api-get-started>): ***[DocumentDB00.cs](<https://github.com/loganSQL/NoSQL/blob/master/src/DocumentDB00_Program.cs>)***
+* [Azure Cosmos DB: SQL API getting started tutorial](<https://docs.microsoft.com/en-us/azure/cosmos-db/sql-api-get-started>) 
+  * ***[DocumentDB00.cs](<https://github.com/loganSQL/NoSQL/blob/master/src/DocumentDB00_Program.cs>)***
+  * Using **Microsoft.Azure.DocumentDB**
+  * Creating and connecting to an Azure Cosmos DB account
+  * Configuring your Visual Studio Solution
+  * Creating an online database
+  * Creating a collection
+  * Creating JSON documents
+  * Querying the collection
+  * Replacing a document
+  * Deleting a document
+  *Deleting the database
 * 
 
 
