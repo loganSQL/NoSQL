@@ -1,5 +1,5 @@
 # MongoDB
-## Installation
+## [Installation](<https://docs.mongodb.com/manual/installation/>)
 ```
 ## check OS version
 wmic os get osarchitecture
@@ -31,8 +31,25 @@ docker top firstmongo
 docker inspect firstmongo|findstr 'IPAddress'
 
 ## connect from mongo shell
-set-alias mg C:\logan\bin\mongo.exe
-mg --host 172.23.23.21:27017
+## https://docs.mongodb.com/manual/mongo/
+set-alias mongo C:\logan\bin\mongo.exe
+$h=$(docker ps -q)
+mongo --host 172.23.23.21:27017
+mongo --host $(docker ps -q)
+mongo --host $h
+
+# Default Port: By default MongoDB is listening to port 27017.
+mongo <HOST>
+mongo <HOST>:<PORT>
+mongo <HOST>:<PORT>/<DB>
+
+# https://medium.com/mongoaudit/how-to-enable-authentication-on-mongodb-b9e8a924efac
+# https://www.mkyong.com/mongodb/mongodb-allow-remote-access/
+# https://docs.mongodb.com/manual/administration/configuration/
+mongo -u <USER> -p <PASSWORD> <HOST>:<PORT> --authenticationDatabase <AUTH_DB>
+mongo -u <USER> -p <PASSWORD> <HOST>:<PORT>/<DB> --authenticationDatabase <AUTH_DB>
+
+
 
 ## connect to container shell
 docker exec -it firstmongo cmd
@@ -40,3 +57,68 @@ dir
 wmic os get osarchitecture
 mongo
 ```
+## [Mongo Shell](<https://docs.mongodb.com/manual/mongo/>)
+```
+# 1. database
+## display current db
+db
+
+## switch db
+use logandb
+
+## list all dbs
+show dbs
+
+# 2. Collection (db -> current, collection -> TestCollection
+db.TestCollection.insertOne( { x: 1 } );
+db.getCollection("TestCollection")
+db.TestCollection.find().pretty()
+
+# 3. Customize the Prompt
+## Customize Prompt to Display Number of Operations
+cmdCount = 1;
+prompt = function() {
+             return (cmdCount++) + "> ";
+         }
+
+## Customize Prompt to Display Database and Hostname
+host = db.serverStatus().host;
+
+prompt = function() {
+             return db+"@"+host+"$ ";
+         }
+
+## Customize Prompt to Display Up Time and Document Count
+prompt = function() {
+           return "Uptime:"+db.serverStatus().uptime+" Documents:"+db.stats().objects+" > ";
+         }
+
+# 4. Help
+## 4.1. Database Help
+show dbs
+## all methods for db object
+db.help()
+## see the implementation of a method
+db.updateUser
+
+## 4.2. Collection Help
+show collections
+db.YOURCOLLECTION.help()
+db.YOURCOLLECTION.METHOD
+
+## 4.3. Cursor Help
+db.YOURCOLLECTION.find().help()
+db.YOURCOLLECTION.find().toArray
+
+hasNext() which checks whether the cursor has more documents to return.
+next() which returns the next document and advances the cursor position forward by one.
+forEach(<function>) which iterates the whole cursor and applies the <function> to each document returned by the cursor. The <function> expects a single argument which corresponds to the document from each iteration.
+
+## 4.4. Wrapper Object Help
+help misc
+```
+
+## [Mongo Shell Script Basic CRUD Operation](https://blog.kevinchisholm.com/javascript/mongodb/getting-started-with-mongo-shell-scripting-basic-crud-operations/)
+<https://github.com/kevinchisholm/mongo-shell-scripting-basic-crud-operations>
+
+<https://docs.mongodb.com/manual/crud/>
