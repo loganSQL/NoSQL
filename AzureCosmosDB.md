@@ -162,21 +162,30 @@ docker logs azure-cosmosdb-emulator
 https://YOUR_CONTAINER_IP:8081/_explorer/index.html
 ```
 # 4 Select an API and data model to create a database
-## [4.1. Document DB / SQL](<https://www.documentdb.com/sql/demo>) 
-Azure Cosmos DB natively supports document data model with familiar SQL API.
-* [Azure Cosmos DB: SQL API getting started tutorial](<https://docs.microsoft.com/en-us/azure/cosmos-db/sql-api-get-started>) 
+## [4.1. Azure Cosmos DB (DocumentDB) / SQL API](<https://www.documentdb.com/sql/demo>) 
+Azure Cosmos DB's DocumentDB API provides a **JSON document database data model** and **the power of SQL and JavaScript over schema-less data.**
+* [Azure Cosmos DB SQL API (Microsoft.Azure.DocumentDB)](<https://docs.microsoft.com/en-us/azure/cosmos-db/sql-api-get-started>) 
   * ***[DocumentDB00.cs](<https://github.com/loganSQL/NoSQL/blob/master/src/DocumentDB00_Program.cs>)***
   * Using **Microsoft.Azure.DocumentDB**
-  * Creating and connecting to an Azure Cosmos DB account
-  * Configuring your Visual Studio Solution
-  * Creating an online database
+  * Creating a database
   * Creating a collection
   * Creating JSON documents
   * Querying the collection
   * Replacing a document
   * Deleting a document
-  *Deleting the database
-* 
+  * Deleting the database
+* [Azure Cosmos DB SQL API Java](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-api-java-get-started))
+  * Prerquisites:
+    * JDK 1.7+ (Run apt-get install default-jdk if you don't have JDK)
+    * Maven (Run apt-get install maven if you don't have Maven)
+  * [Clone the GitHub project](<https://github.com/Azure-Samples/azure-cosmos-db-documentdb-java-getting-started>)
+```
+git clone git@github.com:Azure-Samples/azure-cosmos-db-documentdb-java-getting-started.git
 
+cd azure-cosmos-db-documentdb-java-getting-started
 
+1) Substitute the endpoint and authorization key in Program.java with your Cosmos DB account's values.
+2) From a command prompt or shell, run **mvn package** to compile and resolve dependencies.
+3) From a command prompt or shell, run **mvn exec:java -D exec.mainClass=GetStarted**.Program to run the application.
+ 
 
