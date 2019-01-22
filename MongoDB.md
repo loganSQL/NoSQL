@@ -25,8 +25,9 @@ docker pull mongo
 
 ## Start a mongo server instance
 docker run --name firstmongo -d mongo:latest
+docker start firstmongo
 docker ps
-docker log firstmongo
+docker logs firstmongo
 docker top firstmongo
 docker inspect firstmongo|findstr 'IPAddress'
 
@@ -70,9 +71,40 @@ use logandb
 show dbs
 
 # 2. Collection (db -> current, collection -> TestCollection
-db.TestCollection.insertOne( { x: 1 } );
-db.getCollection("TestCollection")
-db.TestCollection.find().pretty()
+show collections
+
+db.names.insert({ "name": "Alex" })
+db.names.insert({ "name": "Logan" })
+db.names.insert({ "name": "Alice" })
+db.names.insert({ "name": "Timothy" })
+db.names.find().toArray()
+db.names.find().pretty()
+
+// ascending
+db.names.find().sort({name:1})
+// descending
+db.names.find().sort({name:-1})
+
+
+// update
+db.names.insert({ "name": "Timothy", "Phone": "647 225-5483" })
+db.names.update({"name":"Logan"},{$set:{"Phone":"416 888-4347"}})
+db.names.update({"Phone":"647 225-5483"},{$set:{"name" : "Tom"}})
+
+// find docs without a field
+db.names.find({"Phone":{"$exists":false}})
+
+// update those without phones (but only update the first doc)
+db.names.update({"Phone":{"$exists":false}},{$set:{"Phone":"1800 888-8888"}})
+
+// update multi docs
+db.names.update({"Phone":{"$exists":false}},{$set:{"Phone":"1800 888-8888"}},{multi:true})
+
+// delete
+db.names.deleteMany({"Phone":"1800 888-8888"})
+
+// drop collection
+db.names.drop()
 
 # 3. Customize the Prompt
 ## Customize Prompt to Display Number of Operations
@@ -102,7 +134,7 @@ db.help()
 db.updateUser
 
 ## 4.2. Collection Help
-show collections
+show collection
 db.YOURCOLLECTION.help()
 db.YOURCOLLECTION.METHOD
 
