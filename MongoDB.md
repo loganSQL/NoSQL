@@ -21,7 +21,7 @@
     mongod.exe --config="C:\logan\test\mongodb4\mongod.cfg"
     
     mongod --port 27017 --dbpath "C:\logan\data\MongoDB4\data" --logpath="C:\logan\data\MongoDB4\log\mongod.log"
-201
+
 8. MongoDB as a service on Windows (Run As Administrator)
 
     # Install as a service
