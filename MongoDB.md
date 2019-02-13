@@ -80,8 +80,9 @@ security:
 Need to re-create service step 8 above
 ```
 3. Connect from another host
-
+```
     mongo --username loganAdmin --password abc123 --host server_ip_from_dns
+```
 
 ## [mongoDB.Atlas](https://cloud.mongodb.com/user#/atlas/login)
 ```
