@@ -3,6 +3,7 @@
 ```
 1. Download from http://www.mongodb.org/downloads
 2. Install .msi file in folder C:\logan\bin\mongodb4
+    ## Powershell env
     $env:Path = $env:Path+";C:\logan\bin\mongodb4\bin"
 3. create data path: mkdir C:\logan\data\mognodb4\data
 4. create log path: mkdir C:\logan\data\mognodb4\data
