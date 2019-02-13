@@ -77,11 +77,29 @@ security:
    authorization: 'enable'
 ```
 ```
-Need to re-create service step 8 above
+# Need to re-create service at step 8 above
+# After started, connect from local host
+mongo --username loganAdmin --password abc123
 ```
 3. Connect from another host
 ```
     mongo --username loganAdmin --password abc123 --host server_ip_from_dns
+```
+
+4. Add more users
+```
+use test
+db.createUser(
+  {
+    user: "myTester",
+    pwd: "xyz123",
+    roles: [ { role: "readWrite", db: "test" },
+             { role: "read", db: "reporting" } ]
+  }
+)
+```
+```
+mongo -u "myTester" -p "xyz123" --authenticationDatabase "test"
 ```
 
 ## [mongoDB.Atlas](https://cloud.mongodb.com/user#/atlas/login)
