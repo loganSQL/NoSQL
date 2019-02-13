@@ -3,6 +3,7 @@
 ```
 1. Download from http://www.mongodb.org/downloads
 2. Install .msi file in folder C:\logan\bin\mongodb4
+    $env:Path = $env:Path+";C:\logan\bin\mongodb4\bin"
 3. create data path: mkdir C:\logan\data\mognodb4\data
 4. create log path: mkdir C:\logan\data\mognodb4\data
 5. create test script dir: mkdri C:\logan\test\mongodb4
@@ -10,7 +11,7 @@
 
     copy C:\logan\bin\mongodb4\mongod.cfg C:\logan\test\mongodb4\mongod.cfg
     
-    Add the following lines in "mongo.config" file
+    ## Add the following lines in "mongo.config" file
     
     port=27017
     dbpath=C:\logan\data\MongoDB4\data
