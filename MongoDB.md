@@ -26,8 +26,15 @@
 
 8. MongoDB as a service on Windows (Run As Administrator)
 
+    # cmd.exe as admin to delete the service if mongo.cfg change
+    # 
+    C:\WINDOWS\system32>sc delete MongoDB
+
     # Install as a service
-    mongod --port 27017 --dbpath "C:\logan\data\MongoDB4\data" --logpath="C:\logan\data\MongoDB4\log\mongod.log" --install --serviceName "MongoDB"
+    mongod --config="C:\logan\test\mongodb4\mongod.cfg" --install --serviceName "MongoDB"
+    
+    # check service
+    Get-Service|findstr MongoDB
     
     # Start Service
 
@@ -41,10 +48,39 @@
 
     mongo --port 27017
 
-10 Connect to remote MongoDB server via command line with authentication.
-
-    mongo --username abcd --password abc123 --host server_ip_or_dns --port 27017
 ```
+### [Connect to your remote MongoDB server](https://ianlondon.github.io/blog/mongodb-auth/)
+1. [Enable Auth](<https://docs.mongodb.com/manual/tutorial/enable-authentication/>)
+```
+use admin
+db.createUser(
+  {
+    user: "loganAdmin",
+    pwd: "abc123",
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" }, "readWriteAnyDatabase" ]
+  }
+)
+```
+2. Change Mongo.cfg
+```
+# 2.1. Comment out bindIP
+# network interfaces
+  net:
+  port: 27017
+  #  bindIp: 127.0.0.1  <- comment out this line
+  # Or bind another IP server_ip_from_dns
+  bindIp: 127.0.0.1,172.16.40.84
+  
+# 2.2. Uncomment out Security
+#security:
+security:
+   authorization: 'enable'
+```
+
+3. Connect from another host
+
+    mongo --username loganAdmin --password abc123 --host server_ip_from_dns
+
 ## [mongoDB.Atlas](https://cloud.mongodb.com/user#/atlas/login)
 ```
 1. Build your first cluster(SANDBOX): logan416
