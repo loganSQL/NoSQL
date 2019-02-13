@@ -1,8 +1,47 @@
 # MongoDB
-## [Installation](<https://docs.mongodb.com/manual/installation/>)
+## MongoDB On Windows
 ```
-## check OS version
-wmic os get osarchitecture
+1. Download from http://www.mongodb.org/downloads
+2. Install .msi file in folder C:\logan\bin\mongodb4
+3. create data path: mkdir C:\logan\data\mognodb4\data
+4. create log path: mkdir C:\logan\data\mognodb4\data
+5. create test script dir: mkdri C:\logan\test\mongodb4
+6. create a config file:
+
+    copy C:\logan\bin\mongodb4\mongod.cfg C:\logan\test\mongodb4\mongod.cfg
+    
+    Add the following lines in "mongo.config" file
+    
+    port=27017
+    dbpath=C:\logan\data\MongoDB4\data
+    logpath=C:\logan\data\MongoDB4\log\mongod.log
+
+7. Start server interactively:
+
+    mongod.exe --config="C:\logan\test\mongodb4\mongod.cfg"
+    
+    mongod --port 27017 --dbpath "C:\logan\data\MongoDB4\data" --logpath="C:\logan\data\MongoDB4\log\mongod.log"
+201
+8. MongoDB as a service on Windows (Run As Administrator)
+
+    # Install as a service
+    mongod --port 27017 --dbpath "C:\logan\data\MongoDB4\data" --logpath="C:\logan\data\MongoDB4\log\mongod.log" --install --serviceName "MongoDB"
+    
+    # Start Service
+
+    net start MongoDB
+    
+    # Stop Service
+
+    net stop MongoDB
+
+9. Connect to localhost MongoDB server via command line
+
+    mongo --port 27017
+
+10 Connect to remote MongoDB server via command line with authentication.
+
+    mongo --username abcd --password abc123 --host server_ip_or_dns --port 27017
 ```
 ## [mongoDB.Atlas](https://cloud.mongodb.com/user#/atlas/login)
 ```
