@@ -83,7 +83,7 @@ mongo -u "loganAdmin" -p "abc123" --authenticationDatabase "admin" -norc
 ```
 3. Connect from another host
 ```
-    mongo --username loganAdmin --password abc123 --host server_ip_from_dns
+    mongo -u loganAdmin -p abc123 -host server_ip_from_dns -norc
 ```
 
 4. Add more users
