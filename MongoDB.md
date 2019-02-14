@@ -83,7 +83,15 @@ mongo -u "loganAdmin" -p "abc123" --authenticationDatabase "admin" -norc
 ```
 3. Connect from another host
 ```
-    mongo -u loganAdmin -p abc123 -host server_ip_from_dns -norc
+    mongo -u loganAdmin -p abc123 -host myhost.mydomain -norc
+```
+```
+PS C:\logan\bin> mongo -u "loganAdmin" -p "abc123" -norc 172.16.40.84/admin
+MongoDB shell version v4.0.5
+connecting to: mongodb://172.16.40.84:27017/admin?gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("c66a7dbc-de87-47d0-af71-938cfcf15953") }
+MongoDB server version: 4.0.6
+>
 ```
 
 4. Add more users
