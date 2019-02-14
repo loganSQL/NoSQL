@@ -79,7 +79,7 @@ security:
 ```
 # Need to re-create service at step 8 above
 # After started, connect from local host
-mongo --username loganAdmin --password abc123
+mongo -u "loganAdmin" -p "abc123" --authenticationDatabase "admin" -norc
 ```
 3. Connect from another host
 ```
@@ -91,15 +91,32 @@ mongo --username loganAdmin --password abc123
 use test
 db.createUser(
   {
-    user: "myTester",
-    pwd: "xyz123",
+    user: "loganTest",
+    pwd: "abc123",
     roles: [ { role: "readWrite", db: "test" },
              { role: "read", db: "reporting" } ]
   }
 )
+
+show users
+
+db.dropUser("loganTest")
 ```
 ```
-mongo -u "myTester" -p "xyz123" --authenticationDatabase "test"
+mongo -u "loganTest" -p "abc123" --authenticationDatabase "test" -norc
+```
+
+```
+PS C:\logan\test\mongodb4> mongo -norc
+MongoDB shell version v4.0.6
+connecting to: mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("c88c6b3e-2350-4b3d-b0c4-f2d3f4537b22") }
+MongoDB server version: 4.0.6
+> db
+test
+> db.auth("loganTest","abc123")
+1
+>
 ```
 
 ## [mongoDB.Atlas](https://cloud.mongodb.com/user#/atlas/login)
