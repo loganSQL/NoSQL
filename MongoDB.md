@@ -277,3 +277,6 @@ help misc
 <https://github.com/kevinchisholm/mongo-shell-scripting-basic-crud-operations>
 
 <https://docs.mongodb.com/manual/crud/>
+
+## [MongoDB in .Net](<https://www.codementor.io/pmbanugo/working-with-mongodb-in-net-1-basics-g4frivcvz>)
+
