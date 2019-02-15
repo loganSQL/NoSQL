@@ -278,5 +278,7 @@ help misc
 
 <https://docs.mongodb.com/manual/crud/>
 
-## [MongoDB in .Net](<https://www.codementor.io/pmbanugo/working-with-mongodb-in-net-1-basics-g4frivcvz>)
+## MongoDB With .Net
+* [Basic Example](<https://www.codementor.io/pmbanugo/working-with-mongodb-in-net-1-basics-g4frivcvz>): [MongoDB_Program.cs](<https://github.com/loganSQL/NoSQL/blob/master/src/MongoDB_Program.cs>)
+* [Mongodb C# driver](<https://github.com/mongodb/mongo-csharp-driver>)
 
