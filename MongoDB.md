@@ -39,10 +39,12 @@
     # Start Service
 
     net start MongoDB
+    Start-Service MongoDB
     
     # Stop Service
 
     net stop MongoDB
+    Stop-Service MongoDB
 
 9. Connect to localhost MongoDB server via command line
 
@@ -55,11 +57,11 @@
 use admin
 db.createUser(
   {
-    user: "loganAdmin",
-    pwd: "abc123",
-    roles: [ { role: "userAdminAnyDatabase", db: "admin" }, "readWriteAnyDatabase" ]
+    user: "sa",
+    pwd: "pwd",
+    roles: [ { role: "root", db: "admin" } ]
   }
-)
+);
 ```
 2. Change Mongo.cfg
 ```
@@ -79,19 +81,12 @@ security:
 ```
 # Need to re-create service at step 8 above
 # After started, connect from local host
-mongo -u "loganAdmin" -p "abc123" --authenticationDatabase "admin" -norc
+mongo -u sa -p pwd -norc
 ```
 3. Connect from another host
 ```
-    mongo -u loganAdmin -p abc123 -host myhost.mydomain -norc
-```
-```
-PS C:\logan\bin> mongo -u "loganAdmin" -p "abc123" -norc 172.16.40.84/admin
-MongoDB shell version v4.0.5
-connecting to: mongodb://172.16.40.84:27017/admin?gssapiServiceName=mongodb
-Implicit session: session { "id" : UUID("c66a7dbc-de87-47d0-af71-938cfcf15953") }
-MongoDB server version: 4.0.6
->
+mongo -u sa -p pwd -norc -host myhost.mydomain
+mongo -u sa -p pwd -norc 172.16.40.84/admin
 ```
 
 4. Add more users
@@ -126,6 +121,22 @@ test
 1
 >
 ```
+
+## [Administration Commands](<https://docs.mongodb.com/manual/reference/command/nav-administration/>)
+```
+## check connections
+db.serverStatus().connections
+db.currentOp(true)
+
+## shudown
+use admin
+db.shutdownServer()
+
+##
+mongo admin --eval "db.shutdownServer()"
+```
+
+
 
 ## [mongoDB.Atlas](https://cloud.mongodb.com/user#/atlas/login)
 ```
@@ -257,9 +268,13 @@ db.help()
 db.updateUser
 
 ## 4.2. Collection Help
-show collection
+show collections
+db.getCollectionNames()
+db.getCollectionInfos()
+
 db.YOURCOLLECTION.help()
-db.YOURCOLLECTION.METHOD
+#db.YOURCOLLECTION.METHOD
+db.students.find()
 
 ## 4.3. Cursor Help
 db.YOURCOLLECTION.find().help()
@@ -278,10 +293,5 @@ help misc
 
 <https://docs.mongodb.com/manual/crud/>
 
-## MongoDB With .Net
-
-* [Mongodb C# driver](<https://github.com/mongodb/mongo-csharp-driver>)
-* [MongoDB .NET Driver](<http://mongodb.github.io/mongo-csharp-driver/>)
-* [Get Started](<http://mongodb.github.io/mongo-csharp-driver/2.7/getting_started/quick_tour/>)
-* [Basic Example](<https://www.codementor.io/pmbanugo/working-with-mongodb-in-net-1-basics-g4frivcvz>): [MongoDB_Program.cs](<https://github.com/loganSQL/NoSQL/blob/master/src/MongoDB_Program.cs>)
+## [MongoDB in .Net](<https://www.codementor.io/pmbanugo/working-with-mongodb-in-net-1-basics-g4frivcvz>)
 
